@@ -35,6 +35,12 @@ app.use((req, res, next) => {
 app.use("/api/progress", routes); // Mount the general routes
 app.use("/api/auth", authRoutes); // Mount the auth routes
 
+app.use(express.static("../frontend/build"));
+app.get("*", (req,res) => {
+  // res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'))
+  res.sendFile(path.join(__dirname, "../frontend/build", "index1.html"));
+})
+
 const port = process.env.PORT || 3000;
 mongoose
   .connect(process.env.MONGO_URI)
